@@ -1,0 +1,170 @@
+//Mix in to set up the grid for various screen sizes
+@mixin grid {
+
+    //for small screens
+    @media screen and (max-width: $screen1) {
+        .grid {
+            display: grid;
+            grid-template-columns: auto;
+            background-color: white;
+            gap: 10px;
+        }
+
+        .grid-top {
+            background-image: url(../images/campus.jpg);
+            text-align: center;
+        }
+
+        .grid-text {
+            background-color: black;
+        }
+
+        .grid-body {
+            background-color: white;
+            text-align: justify;
+            font-size: 20px;
+        }
+
+        img {
+            max-width: 50%;
+            height: auto;
+        }
+    }
+
+    @media screen and (min-width: $screen2) and (max-width: $screen3) {
+
+        //for bigger screens (tablet-sized)
+        .grid {
+            display: grid;
+            grid-template-columns: auto auto;
+            background-color: white;
+            gap: 10px;
+        }
+
+        .grid-top {
+            background-image: url(../images/campus.jpg);
+            text-align: center;
+            padding: 30px;
+            font-size: 30px;
+        }
+
+        .grid-body {
+            background-color: white;
+            text-align: justify;
+            font-size: 20px;
+            padding: 5px;
+        }
+
+        img {
+            max-width: 80%;
+            height: auto;
+        }
+    }
+
+    @media screen and (min-width: $screen3) {
+
+        //for proper monitors and other large screens
+        .grid {
+            display: grid;
+            grid-template-columns: 0.5fr 0.5fr 0.5fr 0.5fr;
+            grid-template-rows: 0.5fr 0.5fr 0.5fr 0.5fr 0.5fr;
+            background-color: gray;
+            gap: 5px;
+        }
+
+        .grid-top {
+            background-image: url(../images/campus.jpg);
+            text-align: center;
+            font-size: 50px;
+            grid-column: 2 / span 2;
+        }
+
+        //positions for the various images
+        .grid-top-image {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .grid-image-1 {
+            grid-row: 3;
+            grid-column: 4;
+        }
+
+        .grid-image-2 {
+            grid-row: 4;
+            grid-column: 1;
+        }
+
+        .grid-image-3 {
+            grid-row: 5;
+            grid-column: 4;
+        }
+
+        //positioning and specs for the text boxes
+        .grid-text {
+            background-color: black;
+            font-size: 25px;
+            grid-column: 2 / span 2;
+            grid-row: 2 / span 4;
+            padding: 5px;
+        }
+
+        .grid-body {
+            background-color: white;
+            text-align: justify;
+            padding: 5px;
+            font-size: 25px;
+            margin: 10px;
+            line-height: 1.6;
+
+            h3 {
+                color: $goldColor;
+            }
+        }
+
+        .n1 {
+            grid-row: 2;
+            grid-column: 2 / span 2;
+        }
+
+        .n2 {
+            grid-row: 3;
+            grid-column: 2 / span 2;
+        }
+
+        .n3 {
+            grid-row: 4;
+            grid-column: 2 / span 2;
+        }
+
+        .n4 {
+            grid-row: 5;
+            grid-column: 2 / span 2;
+        }
+
+        //image formatting specifications
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+}
+
+//This mixin alternates coloring the text boxes for visual impact
+@mixin colorShift {
+    @for $i1 from 1 through $gridCount {
+        @if $i1 % 2==0 {
+            .n#{$i1} {
+
+                background-color: rgb((208 - 50), (177 - 50), (76 - 20))
+            }
+        }
+
+        @else {
+            .n#{$i1} {
+
+                background-color: white;
+            }
+        }
+    }
+}
